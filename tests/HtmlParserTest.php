@@ -12,12 +12,12 @@ class HtmlParserTest extends TestCase
 {
     public function testHtmlFragment()
     {
-        $html = '<img src="http://example.com/image.png?123456" alt="Image">';
+        $html = '<img src="http://example.com/image.png?123456" alt="Image"><span>Hello world</span>';
 
         $fragment = Parser::parseFragment($html);
 
         $this->assertInstanceOf(DOMDocumentFragment::class, $fragment);
-        $this->assertCount(1, $fragment->childNodes);
+        $this->assertCount(2, $fragment->childNodes);
         $this->assertSame('img', $fragment->childNodes->item(0)->tagName);
         $this->assertSame($html, Parser::stringify($fragment));
     }

@@ -50,7 +50,13 @@ class Parser
 
         $body = $document->getElementsByTagName('body')->item(0);
 
+        $nodes = [];
+
         foreach ($body->childNodes as $node) {
+            $nodes[] = $node;
+        }
+
+        foreach ($nodes as $node) {
             $fragment->appendChild($node);
         }
 
