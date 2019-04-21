@@ -1,5 +1,5 @@
 {
-	"name": "html-parser/html-parser",
+	"name": "oscarotero/html-parser",
 	"type": "library",
 	"description": "Parse html strings to DOMDocument",
 	"keywords": ["html", "parser", "dom"],

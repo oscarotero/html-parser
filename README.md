@@ -2,6 +2,10 @@
 
 Simple utility to parse html strings to DOMDocument.
 
+```sh
+composer require oscarotero/html-parser
+```
+
 ## Usage
 
 ```php
