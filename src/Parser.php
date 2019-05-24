@@ -82,7 +82,7 @@ class Parser
 
     private static function normalize(string $string): string
     {
-        if (stripos($string, '<meta charset=') === false) {
+        if (stripos($string, '<meta charset="utf') === false) {
             return $string;
         }
 
