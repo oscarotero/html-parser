@@ -30,13 +30,19 @@ class EncodingsTest extends TestCase
                 ' 「マーケティング4.0」とは結局どういうことなのか？ (1/2) - ITmedia マーケティング',
                 '「マーケティング4.0」とは何か。本稿では、首都大学東京大学院准教授の水越康介氏とネスレ日本の津田匡保氏の講演から、その概念と実践について探る。【更新】 (1/2)',
             ],
+            [
+                'jeanjean.bandcamp.com.html',
+                "Coquin L'éléphant | Jean Jean",
+                "Coquin L'éléphant, by Jean Jean",
+                'title',
+            ],
         ];
     }
 
     /**
      * @dataProvider encodingDataProvider
      */
-    public function testRussian(string $file, string $title, string $description = null)
+    public function testRussian(string $file, string $title, string $description = null, string $metaName = 'description')
     {
         $document = Parser::parse(\file_get_contents(__DIR__."/assets/{$file}"));
         $titleElement = $document->getElementsByTagName('title')->item(0);
@@ -44,7 +50,7 @@ class EncodingsTest extends TestCase
         $this->assertSame($title, $titleElement->textContent);
         
         if ($description) {
-            $descriptionElement = self::xpathQuery($document, './/meta[@name="description"]');
+            $descriptionElement = self::xpathQuery($document, './/meta[@name="'.$metaName.'"]');
             $this->assertSame($description, $descriptionElement->getAttribute('content'));
         }
     }

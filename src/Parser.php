@@ -82,10 +82,6 @@ class Parser
 
     private static function normalize(string $string): string
     {
-        if (stripos($string, '<meta charset="utf') === false) {
-            return $string;
-        }
-
         $detected = mb_detect_encoding($string, implode(',', array_keys(self::ENCODINGS)), true);
         
         if ($detected && isset(self::ENCODINGS[$detected])) {
