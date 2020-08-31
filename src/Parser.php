@@ -75,13 +75,20 @@ class Parser
     private static function createDOMDocument(string $code): DOMDocument
     {
         $errors = libxml_use_internal_errors(true);
-        $entities = libxml_disable_entity_loader(true);
+        
+        // Enabled by default in PHP 8
+        if (PHP_MAJOR_VERSION < 8) {
+            $entities = libxml_disable_entity_loader(true);
+        }
 
         $document = new DOMDocument();
         $document->loadHTML($code);
 
         libxml_use_internal_errors($errors);
-        libxml_disable_entity_loader($entities);
+
+        if (PHP_MAJOR_VERSION < 8) {
+            libxml_disable_entity_loader($entities);
+        }
 
         return $document;
     }
