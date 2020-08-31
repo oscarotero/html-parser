@@ -26,11 +26,9 @@ class HtmlParserTest extends TestCase
     {
         $html = <<<HTML
 <!DOCTYPE html>
-<html>
-    <body>
+<html><body>
         <img src="http://example.com/image.png?123456" alt="Image">
-    </body>
-</html>
+</body></html>
 HTML;
 
         $document = Parser::parse($html);
