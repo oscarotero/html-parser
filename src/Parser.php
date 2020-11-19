@@ -21,9 +21,9 @@ class Parser
         return $node->ownerDocument->saveHTML($node);
     }
 
-    public static function parse(string $html): DOMDocument
+    public static function parse(string $html, ?string $encoding = null): DOMDocument
     {
-        $detected = mb_detect_encoding($html);
+        $detected = $encoding ?? mb_detect_encoding($html);
         
         if ($detected) {
             $html = mb_convert_encoding($html, 'HTML-ENTITIES', $detected);
@@ -51,10 +51,10 @@ class Parser
         return $document;
     }
 
-    public static function parseFragment(string $html): DOMDocumentFragment
+    public static function parseFragment(string $html, ?string $encoding = null): DOMDocumentFragment
     {
         $html = "<html><head></head><body>{$html}</body></html>";
-        $document = static::parse($html);
+        $document = static::parse($html, $encoding);
         $fragment = $document->createDocumentFragment();
 
         $body = $document->getElementsByTagName('body')->item(0);

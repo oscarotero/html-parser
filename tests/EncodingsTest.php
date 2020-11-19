@@ -36,15 +36,29 @@ class EncodingsTest extends TestCase
                 "Coquin L'éléphant, by Jean Jean",
                 'title',
             ],
+            [
+                'vk.com.html',
+                "О нас | ВКонтакте",
+                'ВКонтакте — крупнейшая социальная сеть в России и странах СНГ. Наша миссия — соединять людей, сервисы и компании, создавая простые и удобные инструменты коммуникации.',
+                'description',
+                'windows-1251',
+            ],
+            [
+                'lib.ru.html',
+                "Lib.Ru: Библиотека Максима Мошкова",
+                '',
+                '',
+                'koi8-r',
+            ],
         ];
     }
 
     /**
      * @dataProvider encodingDataProvider
      */
-    public function testRussian(string $file, string $title, string $description = null, string $metaName = 'description')
+    public function testRussian(string $file, string $title, string $description = null, string $metaName = 'description', string $encoding = null)
     {
-        $document = Parser::parse(\file_get_contents(__DIR__."/assets/{$file}"));
+        $document = Parser::parse(\file_get_contents(__DIR__."/assets/{$file}"), $encoding);
         $titleElement = $document->getElementsByTagName('title')->item(0);
         
         $this->assertSame($title, $titleElement->textContent);
