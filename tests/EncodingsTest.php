@@ -50,6 +50,13 @@ class EncodingsTest extends TestCase
                 '',
                 'koi8-r',
             ],
+            [
+                'charset1251.html',
+                "Состоялся релиз Clown of Duty — пародии на Call of Duty - 4PDA",
+                '',
+                '',
+                'windows-1251',
+            ],
         ];
     }
 
