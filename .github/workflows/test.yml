@@ -37,8 +37,8 @@ jobs:
           key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-php-${{ matrix.php }}-composer-
 
-        - name: Install dependencies
-          run: composer install
+      - name: Install dependencies
+        run: composer install
 
-        - name: Tests
-          run: composer test
+      - name: Tests
+        run: composer test
