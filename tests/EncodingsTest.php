@@ -63,7 +63,7 @@ class EncodingsTest extends TestCase
     /**
      * @dataProvider encodingDataProvider
      */
-    public function testRussian(string $file, string $title, string $description = null, string $metaName = 'description', string $encoding = null)
+    public function testRussian(string $file, string $title, ?string $description = null, string $metaName = 'description', ?string $encoding = null)
     {
         $document = Parser::parse(\file_get_contents(__DIR__."/assets/{$file}"), $encoding);
         $titleElement = $document->getElementsByTagName('title')->item(0);
